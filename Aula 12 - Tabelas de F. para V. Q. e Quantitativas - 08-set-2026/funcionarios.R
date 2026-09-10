@@ -16,7 +16,8 @@ valor_min = min(funcionarios$idade_anos)
 R = valor_max - valor_min
 K = sqrt(n)
 r = R / K
+quebras = valor_min + (0:ceiling(R / ceiling(r))) * ceiling(r)
 
-classes_idade_anos = cut(funcionarios$idade_anos, breaks = c(valor_min + (0:ceiling(K)) * ceiling(r)), right = FALSE)
+classes_idade_anos = cut(funcionarios$idade_anos, breaks = quebras, right = FALSE)
 t_idade_anos = epiDisplay::tab1(classes_idade_anos)
 write.csv2(t_idade_anos[[2]], file = "t_idade_anos.csv")
